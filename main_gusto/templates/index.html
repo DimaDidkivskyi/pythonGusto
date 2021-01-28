@@ -1,6 +1,4 @@
-{% extends 'mainPage.html' %} 
-
-{% block content %}
+{% extends 'mainPage.html' %} {% block content %}
 
 <h1>Меню</h1>
 <div class="container">
@@ -8,6 +6,16 @@
         {% for item in categories %}
         <div>
             <h2>{{item.title}}</h2>
+            {% for dishes in item.dishes %}
+            <div>
+                <h3>{{dishes.title}}</h3>
+                <div><p>{{dishes.description}}</p></div>
+                <div><p>{{dishes.price}}</p></div>
+                <div>
+                    <img src="{{dishes.photo.url}}" alt="Photo of dish" />
+                </div>
+            </div>
+            {% endfor %}
         </div>
         {% endfor %}
     </div>
