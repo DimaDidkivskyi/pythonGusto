@@ -14,20 +14,22 @@
     </div>
 </section>
 <section id="special_menu">
-    <h1>Меню від шефа</h1>
+    <div class="section_name"><h1>Меню від шефа</h1></div>
     <div class="container">
         <div class="row">
             {% for item in special_categories %}
-            <div>
+            <div class="dish_category">
                 <h2>{{item.title}}</h2>
                 {% for dishes in item.dishes %}
-                <div>
+                <div class="dish_cell">
                     <h3>{{dishes.title}}</h3>
-                    <div><p>{{dishes.description}}</p></div>
-                    <div><p>{{dishes.price}}</p></div>
-                    <div>
-                        <img src="{{dishes.photo.url}}" alt="Photo of dish" />
-                    </div>
+                    <p>{{dishes.description}}</p>
+                    <p>{{dishes.price}}</p>
+                    <img
+                        class="image_dish"
+                        src="{{dishes.photo.url}}"
+                        alt="Photo of dish"
+                    />
                 </div>
                 {% endfor %}
             </div>
@@ -36,20 +38,22 @@
     </div>
 </section>
 <section id="menu">
-    <h1>Меню</h1>
+    <div class="section_name"><h1>Меню</h1></div>
     <div class="container">
         <div class="row">
             {% for item in categories %}
-            <div>
+            <div class="dish_category">
                 <h2>{{item.title}}</h2>
                 {% for dishes in item.dishes %}
-                <div>
+                <div class="dish_cell">
                     <h3>{{dishes.title}}</h3>
-                    <div><p>{{dishes.description}}</p></div>
-                    <div><p>{{dishes.price}}</p></div>
-                    <div>
-                        <img src="{{dishes.photo.url}}" alt="Photo of dish" />
-                    </div>
+                    <p>{{dishes.description}}</p>
+                    <p>{{dishes.price}}</p>
+                    <img
+                        class="image_dish"
+                        src="{{dishes.photo.url}}"
+                        alt="Photo of dish"
+                    />
                 </div>
                 {% endfor %}
             </div>
@@ -58,19 +62,17 @@
     </div>
 </section>
 <section section id="events">
-    <h1>Події</h1>
+    <div class="section_name"><h1>Події</h1></div>
     <div class="container">
         <div class="row">
             {% for item in events %}
             <div>
                 <h2>{{item.title}}</h2>
-                <div><p>{{item.description}}</p></div>
-                <div><p>{{item.price}}</p></div>
-                <div><p>{{item.event_date}}</p></div>
-                <div><p>{{item.event_time}}</p></div>
-                <div>
-                    <img src="{{item.photo.url}}" alt="Photo of event" />
-                </div>
+                <p>{{item.description}}</p>
+                <p>{{item.price}}</p>
+                <p>{{item.event_date}}</p>
+                <p>{{item.event_time}}</p>
+                <img src="{{item.photo.url}}" alt="Photo of event" />
             </div>
             {% endfor %}
         </div>
