@@ -60,14 +60,36 @@ nav a {
     margin: 5px 10px;
 }
 
+.pageHolder {
+    overflow: auto;
+    width: 100%;
+}
+
+.menu_cell {
+    text-decoration: none;
+    color: black;
+}
+
 .dish_cell {
     border: 5px black solid;
     border-radius: 25px;
     padding: 5px;
-    margin-bottom: 5px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    width: 420px;
+    float: left;
+}
+
+.dish_cell:hover {
+    background-color: rgb(170, 170, 170);
+    transition: 0.3s;
 }
 
 .image_dish {
     width: 400px;
     height: 200px;
+}
+
+h2 {
+    text-align: center;
 }

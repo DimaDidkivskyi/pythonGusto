@@ -1,9 +1,16 @@
 import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Category, Dishes, Event, Banners
+from .forms import UserMessageForm
 
 
 def main(request):
+    if request.method == 'POST':
+        form = UserMessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
+
     banners = Banners.objects.filter(is_visible=True)
 
     special_categories = Category.objects.filter(
@@ -18,4 +25,6 @@ def main(request):
 
     events = Event.objects.filter(event_date__gte=datetime.date.today())
 
-    return render(request, 'index.html', context={'categories': categories, 'special_categories': special_categories, 'events': events, 'banners': banners, })
+    users_messages_form = UserMessageForm()
+
+    return render(request, 'index.html', context={'categories': categories, 'special_categories': special_categories, 'events': events, 'banners': banners, 'form': users_messages_form})

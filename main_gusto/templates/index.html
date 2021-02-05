@@ -20,18 +20,22 @@
             {% for item in special_categories %}
             <div class="dish_category">
                 <h2>{{item.title}}</h2>
-                {% for dishes in item.dishes %}
-                <div class="dish_cell">
-                    <h3>{{dishes.title}}</h3>
-                    <p>{{dishes.description}}</p>
-                    <p>{{dishes.price}}</p>
-                    <img
-                        class="image_dish"
-                        src="{{dishes.photo.url}}"
-                        alt="Photo of dish"
-                    />
+                <div class="pageHolder">
+                    {% for dishes in item.dishes %}
+                    <a class="menu_cell" href="/menu/{{dishes.pk}}">
+                        <div class="dish_cell">
+                            <h3>{{dishes.title}}</h3>
+                            <p>{{dishes.description}}</p>
+                            <p>{{dishes.price}}</p>
+                            <img
+                                class="image_dish"
+                                src="{{dishes.photo.url}}"
+                                alt="Photo of dish"
+                            />
+                        </div>
+                    </a>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
             {% endfor %}
         </div>
@@ -44,18 +48,22 @@
             {% for item in categories %}
             <div class="dish_category">
                 <h2>{{item.title}}</h2>
-                {% for dishes in item.dishes %}
-                <div class="dish_cell">
-                    <h3>{{dishes.title}}</h3>
-                    <p>{{dishes.description}}</p>
-                    <p>{{dishes.price}}</p>
-                    <img
-                        class="image_dish"
-                        src="{{dishes.photo.url}}"
-                        alt="Photo of dish"
-                    />
+                <div class="pageHolder">
+                    {% for dishes in item.dishes %}
+                    <a class="menu_cell" href="/menu/{{dishes.pk}}">
+                        <div class="dish_cell">
+                            <h3>{{dishes.title}}</h3>
+                            <p>{{dishes.description}}</p>
+                            <p>{{dishes.price}}</p>
+                            <img
+                                class="image_dish"
+                                src="{{dishes.photo.url}}"
+                                alt="Photo of dish"
+                            />
+                        </div>
+                    </a>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
             {% endfor %}
         </div>
@@ -75,6 +83,26 @@
                 <img src="{{item.photo.url}}" alt="Photo of event" />
             </div>
             {% endfor %}
+        </div>
+    </div>
+</section>
+<section id="tableReservation">
+    <div class="container">
+        <div class="row">
+            <form
+                name="sendMessage"
+                id="contactForm"
+                novalidate
+                action=""
+                method="POST"
+            >
+                {% csrf_token %}
+                <div class="user_data">
+                    {{form.user_name}}{{form.user_email}}
+                </div>
+                <div class="user_message">{{form.message}}</div>
+                    <button type="submit" class="submitBtn">Залишити повідомлення</button>
+            </form>
         </div>
     </div>
 </section>
