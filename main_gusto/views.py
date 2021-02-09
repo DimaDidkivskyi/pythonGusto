@@ -1,14 +1,25 @@
 import datetime
 from django.shortcuts import render, redirect
 from .models import Category, Dishes, Event, Banners
-from .forms import UserMessageForm
+from .forms import UserMessageForm, CategoryForm, DishesForm
 
 
 def main(request):
     if request.method == 'POST':
-        form = UserMessageForm(request.POST)
-        if form.is_valid():
-            form.save()
+        if 'sendMessage' in request.POST:
+            form = UserMessageForm(request.POST)
+            if form.is_valid():
+                form.save()
+
+        if 'createCategory' in request.POST:
+            form2 = CategoryForm(request.POST)
+            if form2.is_valid():
+                form2.save()
+
+        if 'createDish' in request.POST:
+            form3 = DishesForm(request.POST, request.FILES)
+            if form3.is_valid():
+                form3.save()
         return redirect('/')
 
     banners = Banners.objects.filter(is_visible=True)
@@ -26,5 +37,7 @@ def main(request):
     events = Event.objects.filter(event_date__gte=datetime.date.today())
 
     users_messages_form = UserMessageForm()
+    category_form = CategoryForm()
+    dishes_form = DishesForm()
 
-    return render(request, 'index.html', context={'categories': categories, 'special_categories': special_categories, 'events': events, 'banners': banners, 'form': users_messages_form})
+    return render(request, 'index.html', context={'categories': categories, 'special_categories': special_categories, 'events': events, 'banners': banners, 'form1': users_messages_form, 'form2': category_form, 'form3': dishes_form, })

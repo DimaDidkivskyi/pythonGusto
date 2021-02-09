@@ -98,10 +98,64 @@
             >
                 {% csrf_token %}
                 <div class="user_data">
-                    {{form.user_name}}{{form.user_email}}
+                    {{form1.user_name}}{{form1.user_email}}
                 </div>
-                <div class="user_message">{{form.message}}</div>
-                    <button type="submit" class="submitBtn">Залишити повідомлення</button>
+                <div class="user_message">{{form1.message}}</div>
+                <button type="submit" name="sendMessage" class="submitBtn">
+                    Залишити повідомлення
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section id="createCategory">
+    <div>
+        <form
+            name="createCategory"
+            id="createCategory"
+            novalidate
+            action=""
+            method="POST"
+        >
+            {% csrf_token %}
+            <div>
+                {{form2.title}} {{form2.category_order}}
+                <div>
+                    <label for="">Is visible: </label>{{form2.is_visible}}
+                </div>
+                <div>
+                    <label for="">Is special: </label>{{form2.is_special}}
+                </div>
+            </div>
+            <button type="submit" name="createCategory" class="submitBtn">
+                Створити категорію
+            </button>
+        </form>
+    </div>
+</section>
+
+<section id="createDish">
+    <div class="container">
+        <div class="row">
+            <form
+                name="createNewDish"
+                id="dishForm"
+                novalidate
+                action=""
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                {% csrf_token %}
+                <div><label>Назва страви: </label>{{form3.title}}</div>
+                <div><label>Ціна: </label> {{form3.price}}</div>
+                <div>{{form3.description}}</div>
+                <div><label>Фото страви: </label>{{form3.photo}}</div>
+                <div>{{form3.category}}</div>
+                <div><label>Is visible: </label>{{form3.is_visible}}</div>
+                <button type="submit" name="createDish" class="submitBtn">
+                    Створити страву
+                </button>
             </form>
         </div>
     </div>
