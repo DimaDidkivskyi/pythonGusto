@@ -1,10 +1,12 @@
 {% extends 'mainPage.html' %} {% block content %}
 
-<div class="dish_cell">
-    <h3>{{dish.title}}</h3>
-    <p>{{dish.description}}</p>
-    <p>{{dish.price}}</p>
-    <img class="image_dish" src="{{dish.photo.url}}" alt="Photo of dish" />
+<div class="dish_page">
+    <img class="image_dish_page" src="{{dish.photo.url}}" alt="Photo of dish" />
+    <div class="dish_data_filds">
+        <h2>{{dish.title}}</h2>
+        <p>{{dish.description}}</p>
+        <p>Ціна: {{dish.price}}</p>
+    </div>
 </div>
 
 {% endblock %}

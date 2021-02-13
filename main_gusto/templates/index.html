@@ -1,116 +1,115 @@
 {% extends 'mainPage.html' %} {% block content %}
 <section id="banner">
-    <div class="container">
-        <div class="row">
-            {% for item in banners %}
-            <div>
-                <h3>{{item.title}}</h3>
-                <div>
-                    <img src="{{item.photo.url}}" alt="Banner" />
-                </div>
-            </div>
-            {% endfor %}
+    {% for item in banners %}
+    <div>
+        <div>
+            <img src="{{item.photo.url}}" alt="Banner" />
         </div>
     </div>
+    {% endfor %}
 </section>
 <section id="special_menu">
     <div class="section_name"><h1>Меню від шефа</h1></div>
-    <div class="container">
-        <div class="row">
-            {% for item in special_categories %}
-            <div class="dish_category">
-                <h2>{{item.title}}</h2>
-                <div class="pageHolder">
-                    {% for dishes in item.dishes %}
-                    <a class="menu_cell" href="/menu/{{dishes.pk}}">
-                        <div class="dish_cell">
-                            <h3>{{dishes.title}}</h3>
-                            <p>{{dishes.description}}</p>
-                            <p>{{dishes.price}}</p>
-                            <img
-                                class="image_dish"
-                                src="{{dishes.photo.url}}"
-                                alt="Photo of dish"
-                            />
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
+    {% for item in special_categories %}
+    <div class="category_name"><h2>{{item.title}}</h2></div>
+    <div class="pageHolder">
+        {% for dishes in item.dishes %}
+        <a class="menu_cell" href="/menu/{{dishes.pk}}">
+            <div class="dish_cell">
+                <h3>{{dishes.title}}</h3>
+                <p>{{dishes.description}}</p>
+                <p>{{dishes.price}}</p>
+                <img
+                    class="image_dish"
+                    src="{{dishes.photo.url}}"
+                    alt="Photo of dish"
+                />
             </div>
-            {% endfor %}
-        </div>
+        </a>
+        {% endfor %}
     </div>
+    {% endfor %}
 </section>
 <section id="menu">
     <div class="section_name"><h1>Меню</h1></div>
-    <div class="container">
-        <div class="row">
-            {% for item in categories %}
-            <div class="dish_category">
-                <h2>{{item.title}}</h2>
-                <div class="pageHolder">
-                    {% for dishes in item.dishes %}
-                    <a class="menu_cell" href="/menu/{{dishes.pk}}">
-                        <div class="dish_cell">
-                            <h3>{{dishes.title}}</h3>
-                            <p>{{dishes.description}}</p>
-                            <p>{{dishes.price}}</p>
-                            <img
-                                class="image_dish"
-                                src="{{dishes.photo.url}}"
-                                alt="Photo of dish"
-                            />
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
+    {% for item in categories %}
+    <div class="category_name"><h2>{{item.title}}</h2></div>
+    <div class="pageHolder">
+        {% for dishes in item.dishes %}
+        <a class="menu_cell" href="/menu/{{dishes.pk}}">
+            <div class="dish_cell">
+                <h3>{{dishes.title}}</h3>
+                <p>{{dishes.description}}</p>
+                <p>{{dishes.price}}</p>
+                <img
+                    class="image_dish"
+                    src="{{dishes.photo.url}}"
+                    alt="Photo of dish"
+                />
             </div>
-            {% endfor %}
-        </div>
+        </a>
+        {% endfor %}
     </div>
+    {% endfor %}
 </section>
 <section section id="events">
     <div class="section_name"><h1>Події</h1></div>
-    <div class="container">
-        <div class="row">
-            {% for item in events %}
-            <div>
-                <h2>{{item.title}}</h2>
-                <p>{{item.description}}</p>
-                <p>{{item.price}}</p>
-                <p>{{item.event_date}}</p>
-                <p>{{item.event_time}}</p>
-                <img src="{{item.photo.url}}" alt="Photo of event" />
-            </div>
-            {% endfor %}
+    {% for item in events %}
+    <div class="events_field">
+        <img
+            class="event_image"
+            src="{{item.photo.url}}"
+            alt="Photo of event"
+        />
+        <div class="event_data">
+            <label
+                >Event title:
+                <p>{{item.title}}</p></label
+            >
+            <label
+                >Event description:
+                <p>{{item.description}}</p></label
+            >
+            <label
+                >Event picer:
+                <p>{{item.price}}</p></label
+            >
+            <label
+                >Event date:
+                <p>{{item.event_date |date:'d-m-y'}}</p></label
+            >
+            <label
+                >Event time:
+                <p>{{item.event_time}}</p></label
+            >
         </div>
     </div>
+    {% endfor %}
 </section>
 <section id="tableReservation">
-    <div class="container">
-        <div class="row">
-            <form
-                name="sendMessage"
-                id="contactForm"
-                novalidate
-                action=""
-                method="POST"
-            >
-                {% csrf_token %}
-                <div class="user_data">
-                    {{form1.user_name}}{{form1.user_email}}
-                </div>
-                <div class="user_message">{{form1.message}}</div>
-                <button type="submit" name="sendMessage" class="submitBtn">
-                    Залишити повідомлення
-                </button>
-            </form>
-        </div>
+    <div class="section_name"><h2>Залишити повідомлення</h2></div>
+    <div class="user_data_form">
+        <form
+            name="sendMessage"
+            id="contactForm"
+            novalidate
+            action=""
+            method="POST"
+        >
+            {% csrf_token %}
+            <div>{{form1.user_name}}</div>
+            <div>{{form1.user_email}}</div>
+            <div>{{form1.message}}</div>
+            <button type="submit" name="sendMessage" class="submitBtn">
+                Залишити повідомлення
+            </button>
+        </form>
     </div>
 </section>
 
 <section id="createCategory">
-    <div>
+    <div class="section_name"><h2>Створити категорію</h2></div>
+    <div class="create_category_form">
         <form
             name="createCategory"
             id="createCategory"
@@ -136,28 +135,27 @@
 </section>
 
 <section id="createDish">
-    <div class="container">
-        <div class="row">
-            <form
-                name="createNewDish"
-                id="dishForm"
-                novalidate
-                action=""
-                method="POST"
-                enctype="multipart/form-data"
-            >
-                {% csrf_token %}
-                <div><label>Назва страви: </label>{{form3.title}}</div>
-                <div><label>Ціна: </label> {{form3.price}}</div>
-                <div>{{form3.description}}</div>
-                <div><label>Фото страви: </label>{{form3.photo}}</div>
-                <div>{{form3.category}}</div>
-                <div><label>Is visible: </label>{{form3.is_visible}}</div>
-                <button type="submit" name="createDish" class="submitBtn">
-                    Створити страву
-                </button>
-            </form>
-        </div>
+    <div class="section_name"><h2>Створити категорію</h2></div>
+    <div class="create_dish_form">
+        <form
+            name="createNewDish"
+            id="dishForm"
+            novalidate
+            action=""
+            method="POST"
+            enctype="multipart/form-data"
+        >
+            {% csrf_token %}
+            <div>{{form3.title}}</div>
+            <div>{{form3.price}}</div>
+            <div>{{form3.description}}</div>
+            <div><label>Фото страви: </label>{{form3.photo}}</div>
+            <div>{{form3.category}}</div>
+            <div><label>Is visible: </label>{{form3.is_visible}}</div>
+            <button type="submit" name="createDish" class="submitBtn">
+                Створити страву
+            </button>
+        </form>
     </div>
 </section>
 {% endblock %}

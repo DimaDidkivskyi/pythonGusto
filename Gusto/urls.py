@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main_gusto.urls')),
     path('menu/', include('menu_gusto.urls')),
+    path('user_messages/', include('user_messages.urls')),
 ]
 
 if settings.DEBUG:

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_gusto',
     'menu_gusto',
+    'user_messages',
 ]
 
 MIDDLEWARE = [

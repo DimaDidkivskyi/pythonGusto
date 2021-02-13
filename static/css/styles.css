@@ -2,12 +2,15 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Lato;
+    font-family: "Lato", sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
+    background: #f1dabf;
 }
+
+/* Головна сторінка */
 
 .blank_space {
     height: 60px;
@@ -15,9 +18,11 @@ html {
     top: 0;
 }
 
+/* Header та footer */
+
 nav,
 footer {
-    background-color: #2e2e2e;
+    background-color: #04030f;
 }
 
 nav {
@@ -46,50 +51,169 @@ nav a {
     color: #ffffff;
 }
 
+/* Назва секцій */
+
 .section_name {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #2e2e2e;
+    background: #362417;
     width: 100%;
     height: 50px;
     color: #ffffff;
 }
 
-.dish_category {
-    margin: 5px 10px;
+.category_name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #92817a;
+    width: 100%;
+    height: 50px;
+    color: #ffffff;
 }
+
+/* Список страв */
 
 .pageHolder {
     overflow: auto;
     width: 100%;
+    background: #f1dabf;
 }
+
+/* Кнопка переходу на сторінку страви */
 
 .menu_cell {
     text-decoration: none;
     color: black;
 }
 
+/* Комірка страви */
+
 .dish_cell {
     border: 5px black solid;
     border-radius: 25px;
     padding: 5px;
-    margin-left: 15px;
-    margin-bottom: 10px;
+    margin: 10px 15px 10px 15px;
     width: 420px;
     float: left;
 }
+
+/* Анімація при наведені курсору на страву */
 
 .dish_cell:hover {
     background-color: rgb(170, 170, 170);
     transition: 0.3s;
 }
 
+/* Фото страви */
+
 .image_dish {
     width: 400px;
     height: 200px;
 }
 
-h2 {
+/* Поле події */
+
+.events_field {
+    display: block;
     text-align: center;
+    background: #f1dabf;
+}
+
+.event_image {
+    margin-top: 20px;
+    width: 1000px;
+    height: auto;
+}
+
+.event_data {
+    display: grid;
+    margin: 10px 20px 0 20px;
+    font-size: 20px;
+}
+/* Поле створення повідомлень, категорій страв та самих страв */
+
+.user_data_form,
+.create_category_form,
+.create_dish_form {
+    display: flex;
+    text-align: center;
+    font-size: 20px;
+    justify-content: center;
+    background: #f1dabf;
+    width: 100%;
+    color: #000000;
+}
+
+/* Поля вводу інформації */
+
+.user_name_field,
+.user_email_field,
+.category_title,
+.category_order,
+.dish_title_class,
+.dish_price_class {
+    height: 40px;
+    width: 250px;
+    margin: 5px 20px 10px 0px;
+    font-size: 20px;
+}
+
+/* Великі поля вводу інформації */
+
+.message_field,
+.dish_description_class {
+    height: 100px;
+    width: 540px;
+    font-size: 20px;
+}
+
+/* Кнопка підтвердження */
+
+.submitBtn {
+    display: inline-block;
+    padding: 5px 20px;
+    border: 0.1em solid #000000;
+    margin: 10px 5px 20px 0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: #f1dabf;
+}
+
+/* Анімація кнопки */
+
+.submitBtn:hover {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Сторінка страви */
+.dish_page {
+    display: flex;
+    background: #fffbff;
+    font-size: 20px;
+}
+
+.image_dish_page {
+    width: 600px;
+    height: auto;
+    margin: 20px 20px 20px 20px;
+}
+
+.dish_data_filds {
+    margin: 20px 20px 20px 20px;
+}
+
+/*  */
+
+.user_message_page {
+    background: #fffbff;
+    font-size: 20px;
 }

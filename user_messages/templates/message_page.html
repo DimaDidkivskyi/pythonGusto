@@ -1,0 +1,49 @@
+{% extends 'mainPage.html' %} {% block content %}
+
+<div class="user_message_page">
+    <h3>Повідомлення від користувачів</h3>
+    {% for item in items %}
+    <div class="user_data_info"><label>Ім'я: </label>{{item.user_name}}</div>
+    <div class="user_data_info">
+        <label>Електрона пошта: </label>{{item.user_email}}
+    </div>
+    <div class="user_data_info">{{item.send_date|date:'d-m-y'}}</div>
+    <div class="user_data_info">{{item.message}}</div>
+    <hr />
+    {% endfor %}
+</div>
+<ul class="pagination">
+    {% if items.has_previous %}
+    <li class="page-item">
+        <a
+            class="page-link"
+            href="?page={{ items.previous_page_number }}"
+            aria-label="Previous"
+        >
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    {% endif %} {% for page in items.paginator.page_range %}
+    <!--  -->
+    {% if page == items.number %}
+    <li class="page-item active">
+        <a class="page-link" href="#"> {{page}} </a>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{page}}"> {{page}} </a>
+    </li>
+    {% endif %} {% endfor %} {% if items.has_next %}
+    <li class="page-item">
+        <a
+            class="page-link"
+            href="?page={{ items.paginator.num_pages }}"
+            aria-label="Next"
+        >
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+    {% endif %}
+</ul>
+
+{% endblock %}
