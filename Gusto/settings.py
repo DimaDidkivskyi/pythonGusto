@@ -10,19 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import dj_database_url
 from pathlib import Path
 import os
 
-DB_NAME = os.environ.get('DB_NAME')
-DB_PASSWORD = os.environ.get('DB_PASSWORD')
-DB_HOST = os.environ.get('DB_HOST')
-DB_USER = os.environ.get('DB_USER')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# DB_NAME = os.environ.get('DB_NAME')
+# DB_PASSWORD = os.environ.get('DB_PASSWORD')
+# DB_HOST = os.environ.get('DB_HOST')
+# DB_USER = os.environ.get('DB_USER')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'main_gusto',
     'menu_gusto',
     'user_messages',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Gusto.urls'
@@ -84,27 +90,27 @@ WSGI_APPLICATION = 'Gusto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-import dj_database_url
-db = dj_database_url.config()
-DATABASES['default'].update(db)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': DB_NAME,
+#         'USER': DB_USER,
+#         'PASSWORD': DB_PASSWORD,
+#         'HOST': DB_HOST,
+#         'PORT': '5432',
+#     }
+# }
+
+# import dj_database_url
+# db = dj_database_url.config()
+# DATABASES['default'].update(db)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -151,7 +157,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-
-

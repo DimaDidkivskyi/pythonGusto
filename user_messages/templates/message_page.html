@@ -1,5 +1,5 @@
-{% extends 'mainPage.html' %} {% block content %}
-
+{% extends 'mainPage.html' %} {% block content %} {% comment %} {% endcomment %}
+{% if 'manager' in user.groups.0.name or user.is_staff %}
 <div class="user_message_page">
     <h3>Повідомлення від користувачів</h3>
     {% for item in items %}
@@ -45,5 +45,4 @@
     </li>
     {% endif %}
 </ul>
-
-{% endblock %}
+{%endif%} {% endblock %}

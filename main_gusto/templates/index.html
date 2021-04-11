@@ -1,32 +1,78 @@
 {% extends 'mainPage.html' %} {% block content %}
+
 <section id="banner">
-    {% for item in banners %}
-    <div>
-        <div>
-            <img src="{{item.photo.url}}" alt="Banner" />
+    <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-ride="carousel"
+    >
+        <div class="carousel-inner">
+            {% for item in banners %} {% if forloop.counter == 1 %}
+            <div class="carousel-item active bannerImage">
+                <img
+                    class="d-block w-100"
+                    src="{{ item.photo.url }}"
+                    alt="Image"
+                />
+            </div>
+            {% else %}
+            <div class="carousel-item bannerImage">
+                <img
+                    class="d-block w-100"
+                    src="{{ item.photo.url }}"
+                    alt="Image"
+                />
+            </div>
+            {% endif %} {% endfor %}
         </div>
+        <a
+            class="carousel-control-prev"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="prev"
+        >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a
+            class="carousel-control-next"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="next"
+        >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    {% endfor %}
 </section>
 <section id="special_menu">
     <div class="section_name"><h1>Меню від шефа</h1></div>
     {% for item in special_categories %}
     <div class="category_name"><h2>{{item.title}}</h2></div>
-    <div class="pageHolder">
-        {% for dishes in item.dishes %}
-        <a class="menu_cell" href="/menu/{{dishes.pk}}">
-            <div class="dish_cell">
-                <h3>{{dishes.title}}</h3>
-                <p>{{dishes.description}}</p>
-                <p>{{dishes.price}}</p>
-                <img
-                    class="image_dish"
-                    src="{{dishes.photo.url}}"
-                    alt="Photo of dish"
-                />
+    <div class="container">
+        <div class="row">
+            {% for dishes in item.dishes %}
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem">
+                    <img
+                        class="card-img-top image"
+                        src="{{dishes.photo.url}}"
+                        alt="Photo of dish"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title">{{dishes.title}}</h5>
+                        <p class="card-text">
+                            Description: {{dishes.description}}
+                        </p>
+                        <p class="card-text">Price: {{dishes.price}}</p>
+                        <a href="/menu/{{dishes.pk}}" class="btn btn-primary"
+                            >До блюда</a
+                        >
+                    </div>
+                </div>
             </div>
-        </a>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
     {% endfor %}
 </section>
@@ -34,61 +80,53 @@
     <div class="section_name"><h1>Меню</h1></div>
     {% for item in categories %}
     <div class="category_name"><h2>{{item.title}}</h2></div>
-    <div class="pageHolder">
-        {% for dishes in item.dishes %}
-        <a class="menu_cell" href="/menu/{{dishes.pk}}">
-            <div class="dish_cell">
-                <h3>{{dishes.title}}</h3>
-                <p>{{dishes.description}}</p>
-                <p>{{dishes.price}}</p>
-                <img
-                    class="image_dish"
-                    src="{{dishes.photo.url}}"
-                    alt="Photo of dish"
-                />
+    <div class="container">
+        <div class="row">
+            {% for dishes in item.dishes %}
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem">
+                    <img
+                        class="card-img-top image"
+                        src="{{dishes.photo.url}}"
+                        alt="Photo of dish"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title">{{dishes.title}}</h5>
+                        <p class="card-text">
+                            Description: {{dishes.description}}
+                        </p>
+                        <p class="card-text">Price: {{dishes.price}}</p>
+                        <a href="/menu/{{dishes.pk}}" class="btn btn-primary"
+                            >До блюда</a
+                        >
+                    </div>
+                </div>
             </div>
-        </a>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
     {% endfor %}
 </section>
 <section section id="events">
     <div class="section_name"><h1>Події</h1></div>
     {% for item in events %}
-    <div class="events_field">
-        <img
-            class="event_image"
-            src="{{item.photo.url}}"
-            alt="Photo of event"
-        />
-        <div class="event_data">
-            <label
-                >Event title:
-                <p>{{item.title}}</p></label
-            >
-            <label
-                >Event description:
-                <p>{{item.description}}</p></label
-            >
-            <label
-                >Event picer:
-                <p>{{item.price}}</p></label
-            >
-            <label
-                >Event date:
-                <p>{{item.event_date |date:'d-m-y'}}</p></label
-            >
-            <label
-                >Event time:
-                <p>{{item.event_time}}</p></label
-            >
+    <div class="card mb-3">
+        <img class="card-img-top" src="{{item.photo.url}}" alt="Image" />
+        <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <p class="card-text">Опис: {{item.description}}</p>
+            <p class="card-text">Ціна: {{item.price}}</p>
+            <p class="card-text">
+                Дата івенту: {{item.event_date |date:'d-m-y'}}
+            </p>
+            <p class="card-text">Дата івенту:{{item.event_time}}</p>
         </div>
     </div>
     {% endfor %}
 </section>
 <section id="tableReservation">
     <div class="section_name"><h2>Залишити повідомлення</h2></div>
-    <div class="user_data_form">
+    <div class="container form-conteiner">
         <form
             name="sendMessage"
             id="contactForm"
@@ -97,19 +135,29 @@
             method="POST"
         >
             {% csrf_token %}
-            <div>{{form1.user_name}}</div>
-            <div>{{form1.user_email}}</div>
-            <div>{{form1.message}}</div>
-            <button type="submit" name="sendMessage" class="submitBtn">
+            <div class="form-group">
+                <label for="name">Ваше ім'я</label>{{form1.user_name}}
+            </div>
+            <div class="form-group">
+                <label for="email">Електрона пошта</label>{{form1.user_email}}
+            </div>
+            <div class="form-group">
+                <label for="message">Повідомлення</label>{{form1.message}}
+            </div>
+            <button
+                type="submit"
+                name="sendMessage"
+                class="btn btn-primary btn-block"
+            >
                 Залишити повідомлення
             </button>
         </form>
     </div>
 </section>
-
+{% if 'manager' in user.groups.0.name or user.is_staff %}
 <section id="createCategory">
     <div class="section_name"><h2>Створити категорію</h2></div>
-    <div class="create_category_form">
+    <div class="container form-conteiner">
         <form
             name="createCategory"
             id="createCategory"
@@ -118,16 +166,27 @@
             method="POST"
         >
             {% csrf_token %}
-            <div>
-                {{form2.title}} {{form2.category_order}}
-                <div>
-                    <label for="">Is visible: </label>{{form2.is_visible}}
-                </div>
-                <div>
-                    <label for="">Is special: </label>{{form2.is_special}}
-                </div>
+            <div class="form-group">
+                <label for="category_title">Назва категорії</label
+                >{{form2.title}}
             </div>
-            <button type="submit" name="createCategory" class="submitBtn">
+            <div class="form-group">
+                <label for="category_title">Номер категорії</label
+                >{{form2.category_order}}
+            </div>
+            <div class="form-group">
+                <label for="category_visible">Is visible: </label
+                >{{form2.is_visible}}
+            </div>
+            <div class="form-group">
+                <label for="category_special">Is special: </label
+                >{{form2.is_special}}
+            </div>
+            <button
+                type="submit"
+                name="createCategory"
+                class="btn btn-primary btn-block"
+            >
                 Створити категорію
             </button>
         </form>
@@ -135,8 +194,8 @@
 </section>
 
 <section id="createDish">
-    <div class="section_name"><h2>Створити категорію</h2></div>
-    <div class="create_dish_form">
+    <div class="section_name"><h2>Створити страву</h2></div>
+    <div class="container form-conteiner">
         <form
             name="createNewDish"
             id="dishForm"
@@ -146,16 +205,35 @@
             enctype="multipart/form-data"
         >
             {% csrf_token %}
-            <div>{{form3.title}}</div>
-            <div>{{form3.price}}</div>
-            <div>{{form3.description}}</div>
-            <div><label>Фото страви: </label>{{form3.photo}}</div>
-            <div>{{form3.category}}</div>
-            <div><label>Is visible: </label>{{form3.is_visible}}</div>
-            <button type="submit" name="createDish" class="submitBtn">
+            <div class="form-group">
+                <label for="title">Назва страви</label>{{form3.title}}
+            </div>
+            <div class="form-group">
+                <label for="price">Ціна страви</label>{{form3.price}}
+            </div>
+            <div class="form-group">
+                <label for="description">Опис страви</label
+                >{{form3.description}}
+            </div>
+            <div class="form-group">
+                <label for="photo_input">Фото страви: </label>{{form3.photo}}
+            </div>
+            <div class="form-group">
+                <label for="dish_category">Категорія страви: </label
+                >{{form3.category}}
+            </div>
+            <div class="form-group">
+                <label for="dish_visible">Is visible:</label
+                >{{form3.is_visible}}
+            </div>
+            <button
+                type="submit"
+                name="createDish"
+                class="btn btn-primary btn-block"
+            >
                 Створити страву
             </button>
         </form>
     </div>
 </section>
-{% endblock %}
+{%endif%} {% endblock %}

@@ -1,1 +1,0 @@
-web: gunicorn gusto.wsgi --log-file –
