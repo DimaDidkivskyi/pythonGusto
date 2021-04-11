@@ -36,7 +36,7 @@ SECRET_KEY = 'ud^t#tahgc63%l0!+_$hwe7$p8d-kvx%=iigm-@!wh9+qld%9n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gusto-didkivskyi.herokuapp.com']
 
 
 # Application definition
