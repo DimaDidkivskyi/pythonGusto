@@ -18,7 +18,7 @@ class Dishes(models.Model):
     def get_file_name_dishes(self, filename):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
-        return os.path.join('media/images/dishes/', filename)
+        return os.path.join('./media/images/dishes/', filename)
 
     title = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=7, decimal_places=2)
@@ -35,7 +35,7 @@ class Event(models.Model):
     def get_file_name_events(self, filename):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
-        return os.path.join('media/images/events/', filename)
+        return os.path.join('./media/images/events/', filename)
 
     title = models.CharField(max_length=50)
     photo = models.ImageField(upload_to=get_file_name_events)
@@ -52,7 +52,7 @@ class Banners(models.Model):
     def get_file_name_banners(self, filename):
         ext = filename.split('.')[-1]
         filename = f'{uuid4()}.{ext}'
-        return os.path.join('media/images/banners/', filename)
+        return os.path.join('./media/images/banners/', filename)
 
     title = models.CharField(max_length=50)
     photo = models.ImageField(upload_to=get_file_name_banners)
