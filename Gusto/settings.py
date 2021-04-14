@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'menu_gusto',
     'user_messages',
     'accounts',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -148,12 +149,25 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+AWS_ACCESS_KEY_ID='AKIA6BRJDQBEQY4PX74T'
+
+AWS_SECRET_ACCESS_KEY='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'
+
+AWS_STORAGE_BUCKET_NAME = 'python-gusto'
+
+AWS_S3_REGION_NAME='eu-central-1'
+
+AWS_DEFAULT_ACL='public-read'
+
+AWS_S3_CUSTOM_DOMAIN='python-gusto.s3.eu-central-1.amazonaws.com'
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 MEDIA_URL = '/media/'
 
